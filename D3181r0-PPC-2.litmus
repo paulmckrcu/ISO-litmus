@@ -1,0 +1,22 @@
+PPC D3181r0-PPC-2
+
+(*
+ * Result: Never
+ *
+ * Does PPCMEM permit the second memory-allocation misordering example
+ * from D3181R0?
+ *)
+
+{
+0:r2=a; 0:r4=b;
+1:r2=a; 1:r4=b;
+2:r2=a; 2:r4=b;
+}
+ P0           | P1            | P2            ;
+ li r1,1      | lwz r1,0(r2)  | lwz r1,0(r4)  ;
+ stw r1,0(r2) | lwsync        | lwsync        ;
+              | li r3,1       | li r5,1       ;
+              | stw r3,0(r4)  | stw r5,0(r2)  ;
+              |               | lwz r3,0(r2)  ;
+exists
+(1:r1=1 /\ 2:r1=1 /\ 2:r3=0)

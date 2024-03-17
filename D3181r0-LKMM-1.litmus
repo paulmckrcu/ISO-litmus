@@ -1,0 +1,33 @@
+C D3181r0-LKMM-1
+
+(*
+ * Result: Never
+ *
+ * Does LKMM permit the first memory-allocation misordering example
+ * from D3181R0?
+ *)
+
+{}
+
+P0(int *a, int *b)
+{
+	WRITE_ONCE(*a, 1);
+}
+
+P1(int *a, int *b)
+{
+	int r1;
+
+	r1 = smp_load_acquire(a);
+	smp_store_release(b, 1);
+}
+
+P2(int *a, int *b)
+{
+	int r2 = smp_load_acquire(b);
+	int r3;
+
+	r3 = READ_ONCE(*a);
+}
+
+exists (1:r1=1 /\ 2:r2=1 /\ 2:r3=0)

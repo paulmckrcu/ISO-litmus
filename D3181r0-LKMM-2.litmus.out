@@ -1,0 +1,14 @@
+Test D3181r0-LKMM-2 Allowed
+States 3
+1:r1=0; 2:r2=0; 2:r3=0;
+1:r1=1; 2:r2=0; 2:r3=0;
+1:r1=1; 2:r2=1; 2:r3=2;
+No
+Witnesses
+Positive: 0 Negative: 3
+Flag mixed-accesses
+Condition exists (1:r1=1 /\ 2:r2=1 /\ 2:r3=0)
+Observation D3181r0-LKMM-2 Never 0 3
+Time D3181r0-LKMM-2 0.01
+Hash=2d0e2e22ee3d46104078aed38bc36789
+
