@@ -7,16 +7,16 @@ Orig=Rfi PodRR Fre Rfi PodRR Fre
 
 {}
 
-P0 (volatile int* y,volatile int* x) {
-  *x = 1;
-  int r0 = *x;
-  int r1 = *y;
+P0 (int* y,int* x) {
+  smp_store_release(x, 1);
+  int r0 = READ_ONCE(*x);
+  int r1 = READ_ONCE(*y);
 }
 
-P1 (volatile int* y,volatile int* x) {
-  *y = 1;
-  int r0 = *y;
-  int r1 = *x;
+P1 (int* y,int* x) {
+  smp_store_release(y, 1);
+  int r0 = READ_ONCE(*y);
+  int r1 = READ_ONCE(*x);
 }
 
 exists (0:r0=1 /\ 0:r1=0 /\ 1:r0=1 /\ 1:r1=0)
