@@ -1,0 +1,39 @@
+C D3181r0-C11-2
+
+(*
+ * Result: Never
+ *
+ * Does C11 permit the second memory-allocation misordering example
+ * from D3181R0?  No, as desired, but in contrast to LKMM, there
+ * is a data race in C++23 ("Flag *undef*").
+ *)
+
+{}
+
+P0(atomic_int *a, atomic_int *b)
+{
+	atomic_store_explicit(a, 1, memory_order_relaxed);
+}
+
+P1(atomic_int *a, atomic_int *b)
+{
+	int r1;
+
+	r1 = atomic_load_explicit(a, memory_order_acquire);
+	if (r1)
+		atomic_store_explicit(b, 1, memory_order_release);
+}
+
+P2(atomic_int *a, atomic_int *b)
+{
+	int r2 = atomic_load_explicit(b, memory_order_acquire);
+	int r3;
+
+	if (r2) {
+		*a = 2; // Data race in C++23!
+		r3 = atomic_load_explicit(a, memory_order_relaxed);
+	}
+}
+
+locations [a;b]
+exists (1:r1=1 /\ 2:r2=1 /\ 2:r3=0)
