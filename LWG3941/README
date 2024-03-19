@@ -1,2 +1,7 @@
 Litmus tests for ISO SC22 WG21 (C++) Library Working Group
 issue 3941.
+
+pattern of interest:
+
+Thread 1: x.store(1, mo_release); r1 = x.load() /* sees 1 */; r2 = y.load() /* sees 0 */
+Thread 2: y.store(1, mo_release); r1 = y.load() /* sees 1 */; r2 = x.load() /* sees 0 */

@@ -1,0 +1,14 @@
+Test PPC-SB+rfis Allowed
+States 4
+0:r3=1; 0:r4=0; 1:r3=1; 1:r4=0;
+0:r3=1; 0:r4=0; 1:r3=1; 1:r4=1;
+0:r3=1; 0:r4=1; 1:r3=1; 1:r4=0;
+0:r3=1; 0:r4=1; 1:r3=1; 1:r4=1;
+Ok
+Witnesses
+Positive: 1 Negative: 3
+Condition exists (0:r3=1 /\ 0:r4=0 /\ 1:r3=1 /\ 1:r4=0)
+Observation PPC-SB+rfis Sometimes 1 3
+Time PPC-SB+rfis 0.01
+Hash=92b2c3f6332309325000656d0632131e
+(* ~/bin/herd7 -cat ppc.cat PPC-SB+rfis.litmus *)

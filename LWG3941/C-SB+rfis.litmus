@@ -1,0 +1,22 @@
+C LKMM-SB+rfis
+"Rfi PodRR Fre Rfi PodRR Fre"
+Generator=diyone7 (version 7.56+03)
+Prefetch=0:x=F,0:y=T,1:y=F,1:x=T
+Com=Fr Fr
+Orig=Rfi PodRR Fre Rfi PodRR Fre
+
+{}
+
+P0 (volatile int* y,volatile int* x) {
+  *x = 1;
+  int r0 = *x;
+  int r1 = *y;
+}
+
+P1 (volatile int* y,volatile int* x) {
+  *y = 1;
+  int r0 = *y;
+  int r1 = *x;
+}
+
+exists (0:r0=1 /\ 0:r1=0 /\ 1:r0=1 /\ 1:r1=0)
