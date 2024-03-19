@@ -1,0 +1,17 @@
+Test D3181r0-C11-1 Allowed
+States 7
+1:r1=0; 2:r2=0; 2:r3=0;
+1:r1=0; 2:r2=0; 2:r3=1;
+1:r1=0; 2:r2=1; 2:r3=0;
+1:r1=0; 2:r2=1; 2:r3=1;
+1:r1=1; 2:r2=0; 2:r3=0;
+1:r1=1; 2:r2=0; 2:r3=1;
+1:r1=1; 2:r2=1; 2:r3=1;
+No
+Witnesses
+Positive: 0 Negative: 7
+Condition exists (1:r1=1 /\ 2:r2=1 /\ 2:r3=0)
+Observation D3181r0-C11-1 Never 0 7
+Time D3181r0-C11-1 0.00
+Hash=1b3a3c5d2040c9ee52841164d0e157c6
+(* ~/bin/herd7 -cat rc11.cat D3181r0-C11-1.litmus *)

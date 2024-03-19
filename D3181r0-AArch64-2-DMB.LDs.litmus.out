@@ -1,0 +1,14 @@
+Test D3181r0-AArch64-2-min Allowed
+States 4
+1:X1=0; 2:X1=0; 2:X3=1;
+1:X1=0; 2:X1=1; 2:X3=1;
+1:X1=1; 2:X1=0; 2:X3=1;
+1:X1=1; 2:X1=1; 2:X3=1;
+No
+Witnesses
+Positive: 0 Negative: 13
+Condition exists (1:X1=1 /\ 2:X1=1 /\ 2:X3=0)
+Observation D3181r0-AArch64-2-min Never 0 13
+Time D3181r0-AArch64-2-min 0.05
+Hash=bd65268da1c2632256e42fa72b1c88ca
+(* ~/bin/herd7 D3181r0-AArch64-2-DMB.LDs.litmus *)

@@ -1,0 +1,20 @@
+AArch64 D3181r0-AArch64-2-min
+
+(*
+ * Kind: Forbidden 
+ *
+ * Does herd7 permit the second memory-allocation misordering example
+ * from D3181R0?
+ *)
+
+{
+0:X2=a; 1:X2=a; 2:X2=a;
+1:X4=b; 2:X4=b; 
+}
+P0          | P1          | P2         ;
+MOV X1,#1   | LDR X1,[X2] | LDR X1,[X4];
+STR X1,[X2] | DMB LD      | DMB LD     ;
+            | MOV X3,#1   | MOV X5,#1  ;
+            | STR X3,[X4] | STR X5,[X2];
+            |             | LDR X3,[X2];
+exists(1:X1=1 /\ 2:X1=1 /\ 2:X3=0)
