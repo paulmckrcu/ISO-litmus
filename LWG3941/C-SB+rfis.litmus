@@ -10,12 +10,14 @@ Orig=Rfi PodRR Fre Rfi PodRR Fre
 P0 (int* y,int* x) {
   smp_store_release(x, 1);
   int r0 = READ_ONCE(*x);
+  smp_mb();
   int r1 = READ_ONCE(*y);
 }
 
 P1 (int* y,int* x) {
   smp_store_release(y, 1);
   int r0 = READ_ONCE(*y);
+  smp_mb();
   int r1 = READ_ONCE(*x);
 }
 
