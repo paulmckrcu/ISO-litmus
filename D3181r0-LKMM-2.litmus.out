@@ -12,3 +12,4 @@ Observation D3181r0-LKMM-2 Never 0 3
 Time D3181r0-LKMM-2 0.01
 Hash=2d0e2e22ee3d46104078aed38bc36789
 
+(* herd7 -conf linux-kernel.cfg $pathname/D3181r0-LKMM-2.litmus *)
