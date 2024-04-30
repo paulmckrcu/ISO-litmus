@@ -1,14 +1,15 @@
 Test C11-SB+rfis Allowed
 States 4
-0:r1=1; 0:r2=0; 1:r1=0; 1:r2=1;
+0:r1=1; 0:r2=0; 1:r1=1; 1:r2=0;
 0:r1=1; 0:r2=0; 1:r1=1; 1:r2=1;
-0:r1=1; 0:r2=1; 1:r1=0; 1:r2=1;
+0:r1=1; 0:r2=1; 1:r1=1; 1:r2=0;
 0:r1=1; 0:r2=1; 1:r1=1; 1:r2=1;
-No
+Ok
 Witnesses
-Positive: 0 Negative: 4
+Positive: 1 Negative: 3
 Condition exists (0:r1=1 /\ 0:r2=0 /\ 1:r1=1 /\ 1:r2=0)
-Observation C11-SB+rfis Never 0 4
+Observation C11-SB+rfis Sometimes 1 3
 Time C11-SB+rfis 0.01
-Hash=675d0df5d490c027e950be1ab27fa11e
-(* ~/bin/herd7 -cat c11_simp.cat C11-SB+rfis.litmus *)
+Hash=980e287321ee28e6fda0a78ac180d7fd
+
+(* herd7 -cat c11_simp.cat C11-SB+rfis.litmus *)

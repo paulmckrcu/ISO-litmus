@@ -5,14 +5,14 @@ C C11-SB+rfis
 P0(atomic_int *x, atomic_int *y)
 {
 atomic_store_explicit(x,1, memory_order_release);
-r1 = atomic_load_explicit(x, memory_order_relaxed); 
-r2 = atomic_load_explicit(y, memory_order_relaxed);
+r1 = atomic_load_explicit(x, memory_order_seq_cst); 
+r2 = atomic_load_explicit(y, memory_order_seq_cst);
 }
 
 P1(atomic_int *x, atomic_int *y)
 {
 atomic_store_explicit(y,1, memory_order_release); 
-r1 = atomic_load_explicit(x, memory_order_relaxed);
-r2 = atomic_load_explicit(y, memory_order_relaxed);
+r1 = atomic_load_explicit(y, memory_order_seq_cst);
+r2 = atomic_load_explicit(x, memory_order_seq_cst);
 }
 exists(0:r1=1 /\ 0:r2=0 /\ 1:r1=1 /\ 1:r2=0)
